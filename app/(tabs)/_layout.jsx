@@ -9,7 +9,7 @@ const TabIcon = ({ icon, color, name, focused }) => {
       <Image
         source={icon}
         tintColor={color}
-        style={{ height: 24, width: 24, marginTop:40 }}
+        style={{ height: 24, width: 24 }}
       />
       <Text
         className={`${focused ? "font-semibold" : "font-pregular"} text-xs`}
