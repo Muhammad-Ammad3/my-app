@@ -40,7 +40,7 @@ const App = () => {
             <Image
               source={images.path}
               style={{
-                width: 136,
+                width: 90,
                 height: 15,
               }}
               className="absolute -bottom-2 -right-2"
@@ -55,11 +55,11 @@ const App = () => {
           </Text>
           <CustomButton 
           title={"Continue with Email"}
-          handlePress={() => router.push("/sign_in")}
+          handlePress={() => router.push("/sign-in")}
           containerStyles="w-full mt-7"/>
         </View>
       </ScrollView>
-     <StatusBar backgroundColor="#161622" style="light"/>
+     <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 };
