@@ -1,6 +1,6 @@
 import { Image, ScrollView, Text, View } from "react-native";
 import React from "react";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import "../global.css";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../constants";
@@ -11,7 +11,15 @@ const App = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView contentContainerStyle={{ height: "100%" }}>
-        <View className="w-full items-center min-h-[85vh] px-4">
+        <View
+          style={{
+            width: "auto",
+            alignItems: "center",
+            minHeight: 850,
+            paddingLeft: 16,
+            paddingRight: 16,
+          }}
+        >
           <Image
             source={images.logo}
             style={{ height: 84, width: 130 }}
@@ -48,18 +56,18 @@ const App = () => {
             />
           </View>
 
-          <Text className="text-sm font-pregular text-gray-100 mt-7 text-center"
-          >
+          <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
             Where creativity meets innovation: embark on a journey of limitless
             exploration with Aora
           </Text>
-          <CustomButton 
-          title={"Continue with Email"}
-          handlePress={() => router.push("/sign-in")}
-          containerStyles="w-full mt-7"/>
+          <CustomButton
+            title={"Continue with Email"}
+            handlePress={() => router.push("/sign-in")}
+            containerStyles="w-full mt-7"
+          />
         </View>
       </ScrollView>
-     <StatusBar backgroundColor="#161622" style="light" />
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 };

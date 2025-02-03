@@ -3,18 +3,32 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Image, ScrollView, Text, View } from "react-native";
 import { images } from "../../constants";
 import FormFields from "../../component/FormFields";
+import CustomButton from "../../component/customButton";
+import { Link } from "expo-router";
 
 const SignIn = () => {
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [isSubmitting, setisSubmitting] = useState(false);
 
-const [form, setForm] = useState({
-  email: "",
-  password: "",
-})
+  const submit = () => {};
 
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
-        <View className="w-full h-full px-4 my-6 justify-center">
+        <View
+          className="w-full h-full px-4 my-6 justify-center min-h-[85vh]"
+          style={{
+            width: "auto",
+            height: "auto",
+            paddingLeft: 16,
+            paddingRight: 16,
+            justifyContent: "center",
+            minHeight: 840,
+          }}
+        >
           <Image
             source={images.logo}
             resizeMode="contain"
@@ -34,20 +48,40 @@ const [form, setForm] = useState({
             Log In to Aora{" "}
           </Text>
           <FormFields
-          title="Email"
-          value={form.email}
-          handleChangeText={(e) => setForm({...form,
-            email: e })}
+            title="Email"
+            value={form.email}
+            handleChangeText={(e) => setForm({ ...form, email: e })}
             otherStyles="mt-7"
             keyboardType="email-address"
           />
           <FormFields
-          title="Password"
-          value={form.password}
-          handleChangeText={(e) => setForm({...form,
-            password: e })}
+            title="Password"
+            value={form.password}
+            handleChangeText={(e) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
           />
+          <CustomButton
+            title="Sign In"
+            handlePress={submit}
+            containerStyles="mt-7"
+            isLoading={isSubmitting}
+          />
+          <View className="justify-center pt-5 flex-row gap-2">
+            <Text className="text-lg text-gray-100 font-pregular">
+              Don't have account?
+            </Text>
+            <Link
+              href="/sign-up"
+              style={{
+                fontSize: 18,
+                lineHeight: 28,
+                fontFamily: "Poppins-SemiBold, sans-serif",
+                color: "#FF9C01",
+              }}
+            >
+              Sign Up
+            </Link>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
