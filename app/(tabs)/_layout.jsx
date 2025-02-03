@@ -1,19 +1,28 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import React from "react";
 import { Tabs } from "expo-router";
 import { icons } from "../../constants";
 
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
-    <View className="items-center justify-center gap-2">
+    <View
+      className="items-center justify-center gap-2"
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 8,
+        height: "auto",
+        width: "auto",
+      }}
+    >
       <Image
         source={icon}
         tintColor={color}
-        style={{ height: 24, width: 24 }}
+        style={{ height: 24, width: 24, marginTop: 20,}}
       />
       <Text
         className={`${focused ? "font-semibold" : "font-pregular"} text-xs`}
-        style={{ color: color }}
+        style={{ color: color, width: 60, textAlign: "center" }}
       >
         {name}
       </Text>
@@ -33,7 +42,7 @@ const TabsLayout = () => {
             backgroundColor: "#161622",
             borderTopWidth: 1,
             borderTopColor: "#232533",
-            height:90,
+            height: 80,
           },
         }}
       >
@@ -103,5 +112,3 @@ const TabsLayout = () => {
 };
 
 export default TabsLayout;
-
-const styles = StyleSheet.create({});
