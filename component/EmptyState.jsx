@@ -1,10 +1,25 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
+import { images } from '../constants'
+import CustomButton from "../component/customButton"
+import { router } from 'expo-router'
 
-const EmptyState = () => {
+const EmptyState = ({ title, subtitle }) => {
   return (
-    <View>
-      <Text>EmptyState</Text>
+    <View className="justify-center items-center px-4">
+      <Image source={images.empty} className="w-[270px] h-[215px]" resizeMode='contain'
+      style={{width: 270, height: 215}} />
+        <Text className="font-pmedium text-sm text-gray-100">
+        {title}
+        </Text>
+        <Text className="text-2xl text-center mt-2 font-psemibold text-white">
+          {subtitle}
+        </Text>
+
+        <CustomButton
+        title="Create Video"
+        handlePress={() => router.push("/create") }
+        containerStyles="w-full my-5" />
     </View>
   )
 }
