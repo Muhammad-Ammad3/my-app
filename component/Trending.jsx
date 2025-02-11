@@ -30,10 +30,16 @@ const zoomOut = {
 };
 
 
-
 const TrendingItem = ({ activeItem, item }) => {
-  const player = useVideoPlayer(item.video); // Video player initialize karna
+  const player = useVideoPlayer(item.video);
   const [play, setPlay] = useState(false);
+
+  // Jaise hi "play" state true ho, video automatically play ho
+  React.useEffect(() => {
+    if (play) {
+      player.play();
+    }
+  }, [play]);
 
   return (
     <Animatable.View
@@ -61,10 +67,7 @@ const TrendingItem = ({ activeItem, item }) => {
             alignItems: "center",
           }}
           activeOpacity={0.7}
-          onPress={() => {
-            setPlay(true);
-            player.play(); // Video play karna
-          }}
+          onPress={() => setPlay(true)} // Ek hi click par video play ho jayegi
         >
           <ImageBackground
             style={{
@@ -89,9 +92,8 @@ const TrendingItem = ({ activeItem, item }) => {
 };
 
 // const TrendingItem = ({ activeItem, item }) => {
+//   const player = useVideoPlayer(item.video); // Video player initialize karna
 //   const [play, setPlay] = useState(false);
-//   console.log("activeItem=>", activeItem.$id);
-//   console.log("item.$id=>", item.$id);
 
 
 //   return (
@@ -101,26 +103,17 @@ const TrendingItem = ({ activeItem, item }) => {
 //       duration={500}
 //     >
 //       {play ? (
-//         // <Video
-//         //   source={{ uri: item.video }}
-//         //   className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
-//         //   style={{
-//         //     width: 208,
-//         //     height: 288,
-//         //     borderRadius: 35,
-//         //     marginTop: 12,
-//         //     backgroundColor: "#FFFEFE",
-//         //   }}
-//         //   resizeMode={ResizeMode.CONTAIN}
-//         //   useNativeControls
-//         //   shouldPlay
-//         //   onPlaybackStatusUpdate={(status) => {
-//         //     if(status.didJustFinish){
-//         //       setPlay(false)
-//         //     }
-//         //   }}
-//         // />
-//         <VideoView player={{ uri:item.video }}/>
+//         <VideoView 
+//           player={player} 
+//           style={{
+//             width: 208,
+//             height: 288,
+//             borderRadius: 35,
+//             marginTop: 12,
+//             backgroundColor: "#FFFEFE",
+//           }} 
+//           nativeControls
+//         />
 //       ) : (
 //         <TouchableOpacity
 //           style={{
@@ -129,7 +122,10 @@ const TrendingItem = ({ activeItem, item }) => {
 //             alignItems: "center",
 //           }}
 //           activeOpacity={0.7}
-//           onPress={() => setPlay(true)}
+//           onPress={() => {
+//             setPlay(true);
+//             player.play(); // Video play karna
+//           }}
 //         >
 //           <ImageBackground
 //             style={{
@@ -137,12 +133,9 @@ const TrendingItem = ({ activeItem, item }) => {
 //               height: 288,
 //               borderRadius: 52,
 //               marginTop: 20,
-//               marginBlock: 20,
 //               overflow: "hidden",
 //             }}
-//             source={{
-//               uri: item.thumbnail,
-//             }}
+//             source={{ uri: item.thumbnail }}
 //             resizeMode="cover"
 //           />
 //           <Image
